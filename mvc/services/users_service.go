@@ -5,8 +5,14 @@ import (
 	"github.com/sswapnil2/golang-microservices/mvc/utils"
 )
 
-func GetUser(userId int64) (*domain.User, *utils.ApplicationError) {
+type usersService struct {}
 
-	return domain.GetUser(userId)
+var (
+	UserService usersService
+)
+
+func (u *usersService) GetUser(userId int64) (*domain.User, *utils.ApplicationError) {
+
+	return domain.UserDao.GetUser(userId)
 
 }

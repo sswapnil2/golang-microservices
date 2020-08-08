@@ -15,9 +15,22 @@ var (
 			Email: "smeshram258@gmail.com",
 		},
 	}
+
+	UserDao DoaUserInterface
 )
 
-func GetUser(userId int64) (*User, *utils.ApplicationError){
+type DoaUserInterface interface {
+	GetUser(int64) (*User, *utils.ApplicationError)
+}
+
+type userDao struct {}
+
+func init() {
+	UserDao = &userDao{}
+}
+
+
+func (u *userDao) GetUser(userId int64) (*User, *utils.ApplicationError){
 
 	if user := users[userId]; user != nil {
 		return user, nil
